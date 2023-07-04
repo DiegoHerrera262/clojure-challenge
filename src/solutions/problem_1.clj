@@ -1,4 +1,4 @@
-(ns problem-1
+(ns solutions.problem-1
   (:require [clojure.edn :as edn]))
 
 (def invoice (edn/read-string (slurp "invoice.edn")))
@@ -45,5 +45,5 @@
   (->> (:invoice/items invoice)
        (filter is-correct-item?)))
 
-(println (vector (filter-invoice invoice)))
+(println (->> (filter-invoice invoice) (map #(:invoice-item/id %))))
 
