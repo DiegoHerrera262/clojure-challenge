@@ -80,8 +80,13 @@
       (assoc :invoice/items (parse-items invoice))
       ))
 
-(def raw-invoice (load-json "invoice.json"))
-(def json-invoice (parse-json-invoice raw-invoice))
+(defn parse-invoice-file
+  [path]
+  (->> (load-json path)
+       (parse-json-invoice)
+       ))
+
+(def json-invoice (parse-invoice-file "invoice.json"))
 
 (println json-invoice)
 (println (s/validate-invoice json-invoice))
