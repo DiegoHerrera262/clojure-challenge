@@ -1,6 +1,5 @@
 (ns invoice-spec
-  (:require
-    [clojure.spec.alpha :as s]))
+  (:require [clojure.spec.alpha :as s]))
 
 (defn not-blank? [value] (-> value clojure.string/blank? not))
 (defn non-empty-string? [x] (and (string? x) (not-blank? x)))
@@ -32,4 +31,7 @@
 (s/def ::invoice
   (s/keys :req [:invoice/issue-date
                 :invoice/customer
-                :invoice/items]))
+                :invoice/items
+                ]))
+
+(defn validate-invoice [data] (s/explain ::invoice data))

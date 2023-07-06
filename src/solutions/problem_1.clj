@@ -45,5 +45,6 @@
   (->> (:invoice/items invoice)
        (filter is-correct-item?)))
 
+(println invoice)
 (println (->> (filter-invoice invoice) (map #(:invoice-item/id %))))
 
